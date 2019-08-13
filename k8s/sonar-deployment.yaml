@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sonar
+  namespace: devops
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sonar
+    spec:
+      nodeSelector:
+        kubernetes.io/hostname: k8s-node-01
+      containers:
+        - name: sonar
+          image: sonarqube:7.4-community
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 9000
+              name: port-sonar
+          envFrom:
+            - configMapRef:
+                name: sonar-config
+          resources:
+            requests:
+              cpu: 500m
+              memory: 1024Mi
+            limits:
+              cpu: 2000m
+              memory: 2048Mi
+          volumeMounts:
+          - mountPath: "/var/lib/sonarqube/data"
+            name: sonar-data
+          - mountPath: "/var/lib/sonarqube/extensions"
+            name: sonar-extensions
+      volumes:
+      - name: sonar-data
+        persistentVolumeClaim:
+          claimName: sonar-data-pv-claim
+      - name: sonar-extensions
+        persistentVolumeClaim:
+          claimName: sonar-ext-pv-claim

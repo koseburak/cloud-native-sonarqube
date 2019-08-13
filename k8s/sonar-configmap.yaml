@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sonar-config
+  namespace: devops
+  labels:
+    app: sonar
+data:
+  #sonar.jdbc.url: "jdbc:postgresql://192.168.41.104:30106/sonar"
+  #sonar.jdbc.username: "devops"
+  #sonar.jdbc.password: "devops"
+  SONARQUBE_JDBC_USERNAME: "devops"
+  SONARQUBE_JDBC_PASSWORD: "devops"
+  SONARQUBE_JDBC_URL: "jdbc:postgresql://192.168.41.104:30106/sonar"

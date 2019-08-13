@@ -1,0 +1,127 @@
+#kind: PersistentVolume
+#apiVersion: v1
+#metadata:
+#  name: sonar-conf-pv-volume
+#  namespace: devops
+#  labels:
+#    type: local
+#    app: sonar
+#spec:
+#  storageClassName: manual
+#  capacity:
+#    storage: 1Gi
+#  accessModes:
+#    - ReadWriteMany
+#  hostPath:
+#    path: "/mnt/kube-data/sonarqube/conf"
+#---
+#kind: PersistentVolumeClaim
+#apiVersion: v1
+#metadata:
+#  name: sonar-conf-pv-claim
+#  namespace: devops
+#  labels:
+#    app: sonar
+#spec:
+#  storageClassName: manual
+#  accessModes:
+#    - ReadWriteMany
+#  resources:
+#    requests:
+#      storage: 1Gi
+#---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: sonar-data-pv-volume
+  namespace: devops
+  labels:
+    type: local
+    app: sonar
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/kube-data/sonarqube/data"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sonar-data-pv-claim
+  namespace: devops
+  labels:
+    app: sonar
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+#kind: PersistentVolume
+#apiVersion: v1
+#metadata:
+#  name: sonar-logs-pv-volume
+#  namespace: devops
+#  labels:
+#    type: local
+#    app: sonar
+#spec:
+#  storageClassName: manual
+#  capacity:
+#    storage: 1Gi
+#  accessModes:
+#    - ReadWriteMany
+#  hostPath:
+#    path: "/mnt/kube-data/sonarqube/logs"
+#---
+#kind: PersistentVolumeClaim
+#apiVersion: v1
+#metadata:
+#  name: sonar-logs-pv-claim
+#  namespace: devops
+#  labels:
+#    app: sonar
+#spec:
+#  storageClassName: manual
+#  accessModes:
+#    - ReadWriteMany
+#  resources:
+#    requests:
+#      storage: 1Gi
+#---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: sonar-ext-pv-volume
+  namespace: devops
+  labels:
+    type: local
+    app: sonar
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/kube-data/sonarqube/extensions"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: sonar-ext-pv-claim
+  namespace: devops
+  labels:
+    app: sonar
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
